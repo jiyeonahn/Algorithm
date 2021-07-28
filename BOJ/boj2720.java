@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-class ex1 {
+public class boj2720 {
 
     public static void main(String[] args) throws IOException {
         int T = 0;

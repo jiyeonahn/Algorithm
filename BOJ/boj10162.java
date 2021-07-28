@@ -1,5 +1,5 @@
 import java.util.*;
-class Main{
+public class boj10162{
     public static void main(String[] args) {
         int[] numArray = {300, 60, 10};
         Scanner scanner = new Scanner(System.in);
