@@ -20,6 +20,8 @@ class Solution {
                 }
             }
         }
+
+        
         int max = 0;
         for(int i = 0; i < distance.length; i++){
             if(distance[i] > max)
