@@ -8,7 +8,7 @@ class Solution {
         for(int i = 0; i < edge.length; i++)
             graph[edge[i][0]][edge[i][1]] = graph[edge[i][1]][edge[i][0]] = true;
 
-        Queue<Integer> queue = new LinkedList<Integer>();
+        Queue<Integer> queue = new LinkedList<Integer>(); 
         queue.offer(1);
 
         while(!queue.isEmpty()){
