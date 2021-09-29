@@ -7,16 +7,18 @@ public class boj11653 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        boolean[] isNotPrime = new boolean[10000000];
+        int Max = 10000000;
+        boolean[] isNotPrime = new boolean[Max];
         ArrayList<Integer> num = new ArrayList<>();
 
         isNotPrime[0] = true;
         isNotPrime[1] = true;
 
-        for(int i = 2; i < Math.sqrt(10000000); i++){
-            if(!isNotPrime[i]) continue;
-            for(int j = i*i; j < 10000000; j += i)
-                isNotPrime[i] = true;
+        for(int i = 2; i < Math.sqrt(Max); i++){
+            if(isNotPrime[i]) continue;
+            for(int j = i*i; j < Max; j += i){
+                isNotPrime[j] = true;
+            }
         }
 
         int n = 2;
