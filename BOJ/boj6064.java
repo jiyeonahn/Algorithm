@@ -19,7 +19,7 @@ public class boj6064 {//카잉달력
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            int lcm = M * N * gcd(M,N);//멸망년도
+            int lcm = M * N / gcd(M,N);//멸망년도
 
             int k = x;
             y = y%N;//N은 항상 y보다 크다. y==N인경우 k%N은 0이 나올 수밖에 없다.
