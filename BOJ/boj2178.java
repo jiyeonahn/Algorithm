@@ -12,7 +12,7 @@ public class boj2178 {//미로탐색
     private static int[][] map;
     private static boolean[][] visited;
 
-    public static void bfs() {
+    private static void bfs() {
         Queue<int[]> q = new LinkedList<>();
         q.add(new int[] {0,0});
         visited[0][0] = true;
