@@ -21,7 +21,7 @@ public class boj16929 {
                 dfs(nx, ny, cnt+1);
                 visited[nx][ny] = false;
             }
-            else if(cnt >= 4 && nx == start_i && ny == start_j){
+            else if(cnt >= 4 && nx == start_i && ny == start_j){//최소 4개는 돌아야하니까
                 System.out.println("Yes");
                 System.exit(0);
             }
