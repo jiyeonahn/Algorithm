@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class boj16929 {
+public class boj16929 {//Two Dots
     private static int[][] map;
     private static boolean[][] visited;
     private static int[] dx = {0, 0, 1, -1};

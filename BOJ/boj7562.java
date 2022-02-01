@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class boj7562 {
+public class boj7562 {//나이트의 이동
     private static int[][] map;
     private static int[] dx = {-2, -2, -1, -1, 1, 1, 2, 2};
     private static int[] dy = {-1, 1, -2, 2, -2, 2, -1, 1};
