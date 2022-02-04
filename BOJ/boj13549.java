@@ -13,43 +13,36 @@ public class boj13549 {//숨바꼭질 3
 
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
-        int[] lc = new int[3];
-        int[] ans = new int[100001];
+        int max = 100000;
+        boolean[] visited = new boolean[100001];
+        int answer = 100001;
 
-        Queue<Integer> q = new LinkedList<>();
-        q.add(N);
+        Queue<Node> q = new LinkedList<>();
+        q.add(new Node(N,0));
 
         while (!q.isEmpty()) {
-            int n = q.poll();
+            Node node = q.poll();
+            visited[node.x] = true;
 
-            if (n == K) {
-                System.out.println(ans[n]);
-                break;
+            if(node.x == K){
+                answer = Math.min(answer, node.time);
             }
 
-            lc[0] = n + 1;
-            lc[1] = n - 1;
-            lc[2] = n * 2;
-
-            for (int i = 0; i < 3; i++) {
-                if (lc[i] >= 0 && lc[i] <= 100000) {
-                    if (ans[lc[i]] != 0 && ans[n] != 0) {
-                        if(i == 2) ans[lc[i]] = Math.min(ans[n], ans[lc[i]]);
-                        else ans[lc[i]] = Math.min(ans[n] + 1, ans[lc[i]]);
-                    } else {
-                        if(i == 2) ans[lc[i]] = ans[n];
-                        else ans[lc[i]] = ans[n] + 1;
-                    }
-
-                    if (lc[i] * 2 == K) {
-                        System.out.println(ans[lc[i]]);
-                        q.clear();
-                        break;
-                    }
-                    q.add(lc[i]);
-                }
-            }
+            if(node.x * 2 <= max && !visited[node.x * 2]) q.offer(new Node(node.x * 2, node.time));
+            if(node.x + 1 <= max && !visited[node.x + 1]) q.offer(new Node(node.x + 1, node.time + 1));
+            if(node.x - 1 >= 0 && !visited[node.x - 1]) q.offer(new Node(node.x - 1, node.time + 1));
         }
+
+        System.out.println(answer);
     }
 
+    public static class Node{
+        int x;
+        int time;
+
+        public Node(int x, int time){
+            this.x = x;
+            this.time = time;
+        }
+    }
 }
