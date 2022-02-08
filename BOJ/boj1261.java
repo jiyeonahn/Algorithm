@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.util.Queue;
 
-public class boj1261 {
+public class boj1261 { //알고스팟
     static int N, M;
     static int[] dx = {0, 1, 0, -1};
     static int[] dy = {1, 0, -1, 0};
