@@ -36,11 +36,10 @@ public class boj11725 {
     }
 
     public static void dfs(int node, int pNode){
-        if (parent[node] != 0) return;
         parent[node] = pNode;
 
         for(int n : graph[node]){
-            dfs(n, node);
+            if(n != pNode)dfs(n, node);//노드와 연결된 값이 부모 노드가 아닐 때
         }
     }
 }
