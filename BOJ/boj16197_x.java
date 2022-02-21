@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class boj16197 {
+public class boj16197_x {
 
     static class Node {
         int r, c, t;
