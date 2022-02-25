@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class boj1963 {
+public class boj1963_x {
     private static int[] d = {1000, 100, 10, 1};
     private static boolean[] isNotPrime = new boolean[10000];
     private static boolean[] discovered = new boolean[10000];
