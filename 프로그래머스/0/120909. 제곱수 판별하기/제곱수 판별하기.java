@@ -1,12 +1,9 @@
 class Solution {
     public int solution(int n) {
-        int answer = 2;
-        for(int i = 1; i <= n/2+1; i++){
-            if(i*i == n){
-                answer = 1;
-                break;
-            }
+        if(n%Math.sqrt(n) == 0){
+            return 1;
         }
-        return answer;
+        
+        return 2;
     }
 }
