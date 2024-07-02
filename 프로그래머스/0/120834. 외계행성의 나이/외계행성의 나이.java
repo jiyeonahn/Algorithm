@@ -1,9 +1,9 @@
 class Solution {
     public String solution(int age) {
         String answer = "";
-        String[] arr = (age+"").split("");
-        for(String num : arr){
-            answer += (char)(Integer.parseInt(num) + 97);
+        while(age > 0){
+            answer = (char)(age%10 + 97) + answer;
+            age /= 10;
         }
 
         return answer;
