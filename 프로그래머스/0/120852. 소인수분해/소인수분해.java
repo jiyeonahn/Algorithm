@@ -1,10 +1,10 @@
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Arrays;
 class Solution {
     public int[] solution(int n) {
         int num = 2;
-        Set<Integer> set = new HashSet<Integer>();
+        Set<Integer> set = new LinkedHashSet<Integer>();
         
         while(n>1){
             if(n%num == 0){
@@ -20,7 +20,6 @@ class Solution {
         for(int ns : set){
             answer[idx++] = ns;
         }
-        Arrays.sort(answer);
         
         return answer;
     }
