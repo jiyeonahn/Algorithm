@@ -4,7 +4,7 @@ class Solution {
         long num = x;
         for(int i = 0; i < n; i++){
             answer[i] = num;
-            num = num + x;
+            num += x;
         }
         return answer;
     }
