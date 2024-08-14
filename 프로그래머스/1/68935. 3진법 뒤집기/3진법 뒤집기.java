@@ -6,11 +6,8 @@ class Solution {
             sb.append(n%3);
             n = n/3;
         }
-        String revStr = sb.reverse().toString();
         
-        for(int i = 0 ; i < revStr.length(); i++){
-            answer += Math.pow(3,i) * Integer.parseInt(revStr.substring(i,i+1));
-        }
+        answer = Integer.parseInt(sb.toString(),3);
             
         return answer;
     }
