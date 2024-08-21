@@ -4,10 +4,7 @@ class Solution {
         int[] answer = new int[commands.length];
         
         for(int i = 0; i < commands.length; i++){
-            int[] numArr = new int[commands[i][1] - commands[i][0] + 1];
-            for(int j = commands[i][0]-1; j < commands[i][1]; j++){
-                numArr[j-commands[i][0]+1] = array[j];
-            }
+            int[] numArr = Arrays.copyOfRange(array, commands[i][0]-1, commands[i][1]);
             Arrays.sort(numArr);
             answer[i] = numArr[commands[i][2]-1];
         }
