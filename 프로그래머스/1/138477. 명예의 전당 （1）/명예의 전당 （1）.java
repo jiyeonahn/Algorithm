@@ -5,16 +5,11 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
       
         for(int i = 0; i < score.length; i++){
-            if(i >= k){
-                if(pq.peek() < score[i]){
-                    pq.poll();
-                    pq.add(score[i]);
-                }
-            }else{
-                pq.add(score[i]);
+            pq.add(score[i]);
+            if(pq.size() > k){
+                pq.poll();
             }
-            
-            answer[i] = pq.peek();
+            answer[i] = pq.peek();            
         }
     
         return answer;
