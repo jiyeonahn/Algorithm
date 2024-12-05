@@ -8,8 +8,8 @@ class Solution {
         }
         
         PriorityQueue<Integer> pq = new PriorityQueue<>((a,b) -> {
-            int absA = Math.abs(a);
-            int absB = Math.abs(b);
+           int absA = Math.abs(a); 
+           int absB = Math.abs(b);
             
             if(absA != absB){
                 return absA - absB;
