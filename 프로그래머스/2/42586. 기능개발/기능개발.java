@@ -5,7 +5,7 @@ class Solution {
         for(int i = 0; i < speeds.length; i++){
             q.add((int) Math.ceil((double)(100 - progresses[i]) / speeds[i]));
         }
-        q.add(100);
+        //q.add(100);
         
         Queue<Integer> ans = new LinkedList<>();
         int n = q.peek();
@@ -20,6 +20,8 @@ class Solution {
                 n = q.poll();
             }
         }
+        
+        ans.add(cnt);
         
         int[] answer = new int[ans.size()];
         for(int i = 0; i < answer.length; i++){
