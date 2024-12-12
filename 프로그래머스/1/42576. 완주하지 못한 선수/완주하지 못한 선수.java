@@ -2,12 +2,12 @@ import java.util.*;
 class Solution {
     public String solution(String[] participant, String[] completion) {
         HashMap<String, Integer> hashMap = new HashMap<>();
-        for(String person : participant){
-            hashMap.put(person, hashMap.getOrDefault(person, 0) + 1);
+        for(String player : participant){
+            hashMap.put(player, hashMap.getOrDefault(player, 0) + 1);
         }
         
-        for(String person : completion){
-            hashMap.put(person, hashMap.get(person) - 1);
+        for(String player : completion){
+            hashMap.put(player, hashMap.get(player) - 1);
         }
         
         for(String key : hashMap.keySet()){
