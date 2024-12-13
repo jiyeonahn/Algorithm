@@ -16,8 +16,10 @@ class Solution {
             }
         }
         for(int i = 0; i < reserve.length; i++){
+            if(reserve[i] == -1) continue;
             for(int j = 0; j < lost.length; j++){
-                if(reserve[i] > 0 && lost[j] > 0 && (reserve[i] + 1 == lost[j] || reserve[i] - 1 == lost[j])){
+                if(lost[j] == -1) continue;
+                if(reserve[i] + 1 == lost[j] || reserve[i] - 1 == lost[j]){
                     lost[j] = -1;   
                     reserve[i] = -1;
                     answer++;
