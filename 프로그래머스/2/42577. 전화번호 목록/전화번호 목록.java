@@ -9,12 +9,16 @@ class Solution {
         
         for(int i = 0; i < phone_book.length; i++){
             String phone_num = phone_book[i];
-            for(int j = 1; j < phone_num.length(); j++){
-                if(hashMap.get(phone_num.substring(0,j)) == null) continue;
-                return false;
-                //hashMap.put(phone_num, hashMap.get(phone_num.substring(0,j)) + 1);
+            for(int j = 0; j < phone_num.length()+1; j++){
+                if(hashMap.get(phone_num.substring(0,j)) != null){
+                    hashMap.put(phone_num, hashMap.get(phone_num.substring(0,j)) + 1);
+                    if(hashMap.get(phone_num.substring(0,j)) > 1){
+                        return false;
+                    }
+                }
             }
         }
+
         return answer;
     }
 }
