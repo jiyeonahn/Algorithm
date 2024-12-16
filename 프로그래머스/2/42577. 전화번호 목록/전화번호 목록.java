@@ -11,9 +11,7 @@ class Solution {
             String phone_num = phone_book[i];
             for(int j = 0; j < phone_num.length(); j++){
                 if(hashMap.get(phone_num.substring(0,j)) != null){
-                    if(hashMap.containsKey(phone_num.substring(0,j))){
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
