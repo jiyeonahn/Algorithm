@@ -2,9 +2,7 @@ import java.util.*;
 class Solution {
     public int solution(int[] priorities, int location) {
         int answer = 0;
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b) -> {
-            return b-a;
-        });
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         Queue<Node> queue = new LinkedList<>();
         for(int i = 0; i < priorities.length; i++){
             pq.add(priorities[i]);
