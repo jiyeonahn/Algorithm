@@ -19,6 +19,6 @@ class Solution {
             }
             
         }
-        visited[curIndex] = false;
+        visited[curIndex] = false; //백트래킹
     }
 }
