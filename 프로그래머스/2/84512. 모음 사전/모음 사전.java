@@ -7,16 +7,17 @@ class Solution {
         return answer;
     }
     void dfs(String word, String currentWord){
-        if(currentWord.length() > 5){
-            return;
-        }
         if(currentWord.equals(word)){
             answer = counter;
             return;
         }
+        
         counter++;
         for(int i = 0; i < 5; i++){
-            dfs(word, currentWord + alphabet[i]);
+            if(currentWord.length() < 5 && answer == 0){
+                dfs(word, currentWord + alphabet[i]);
+            }
         }
+        
     }
 }
