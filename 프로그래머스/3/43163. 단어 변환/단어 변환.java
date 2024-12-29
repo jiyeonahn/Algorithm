@@ -2,7 +2,6 @@ class Solution {
     boolean[] visited;
     int answer;
     public int solution(String begin, String target, String[] words) {
-        answer = 0;
         visited = new boolean[words.length];
         dfs(begin, 0, words, target);            
         return answer;
