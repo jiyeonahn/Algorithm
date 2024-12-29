@@ -13,9 +13,10 @@ class Solution {
         }
         
         for(int i = 0; i < words.length; i++){
+            if(visited[i]) continue;
             int equalCount = 0;
             for(int j = 0; j < currentWord.length(); j++){
-                if(!visited[i] && currentWord.charAt(j) == words[i].charAt(j)){
+                if(currentWord.charAt(j) == words[i].charAt(j)){
                     equalCount++;
                 }
             }
