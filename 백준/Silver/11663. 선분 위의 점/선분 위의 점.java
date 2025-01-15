@@ -32,12 +32,12 @@ class Main{
     }
     public static int lowerBound(int[] arr, int a){
         int low = 0;
-        int high = arr.length;
+        int high = arr.length-1;
 
-        while(low < high){
+        while(low <= high){
             int mid = (low + high) / 2;
             if(arr[mid] >= a){
-                high = mid;
+                high = mid - 1;
             }else{
                 low = mid + 1;
             }
@@ -47,14 +47,14 @@ class Main{
 
     public static int upperBound(int[] arr, int b){
         int low = 0;
-        int high = arr.length;
+        int high = arr.length-1;
 
-        while(low < high){
+        while(low <= high){
             int mid = (low + high) / 2;
             if(arr[mid] <= b){
                 low = mid + 1;
             }else{
-                high = mid;
+                high = mid - 1;
             }
         }
         return low;
