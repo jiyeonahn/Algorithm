@@ -14,7 +14,7 @@ class Main{
 
         int left = 0;
         int right = N-1;
-        int min = Integer.MAX_VALUE;
+        int min = Math.abs(arr[left] + arr[right]);
         answer[0] = arr[left];
         answer[1] = arr[right];
 
