@@ -21,23 +21,18 @@ class Main{
     }
     public static int checkBoard(int x, int y){
         String[] boardA = {"WBWBWBWB", "BWBWBWBW"};
-        String[] boardB = {"BWBWBWBW", "WBWBWBWB"};
         int countA = 0;
         int countB = 0;
         for(int i = x; i < x+8; i++){
             for(int j = y; j < y+8; j++){
                 if(chess[i][j] != boardA[i%2].charAt(j-y)){
                     countA++;
-                }
-            }
-        }
-        for(int i = x; i < x+8; i++){
-            for(int j = y; j < y+8; j++){
-                if(chess[i][j] != boardB[i%2].charAt(j-y)){
+                }else{
                     countB++;
                 }
             }
         }
+
         return Math.min(countA, countB);
     }
 }
