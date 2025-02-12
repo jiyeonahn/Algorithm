@@ -20,19 +20,26 @@ class Main{
         }
 
         int[] merge = new int[N+M];
-        for(int i = 0; i < N; i++){
-            merge[i] = A[i];
+        int n = 0;
+        int m = 0;
+        int idx = 0;
+        while(n < N && m < M){
+            if(A[n] < B[m]){
+                merge[idx++] = A[n++];
+            }else{
+                merge[idx++] = B[m++];
+            }
         }
-
-        for(int i = 0; i < M; i++){
-            merge[i+N] = B[i];
+        for(int i = n; i < N; i++){
+            merge[idx++] = A[i];
         }
-
-        Arrays.sort(merge);
+        for(int i = m; i < M; i++){
+            merge[idx++] = B[i];
+        }
 
         StringBuilder sb = new StringBuilder();
-        for(int n : merge){
-            sb.append(n).append(" ");
+        for(int num : merge){
+            sb.append(num).append(" ");
         }
         System.out.println(sb);
     }
