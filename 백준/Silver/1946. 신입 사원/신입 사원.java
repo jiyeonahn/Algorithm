@@ -15,9 +15,7 @@ class Main{
                 applicant[j][0] = Integer.parseInt(st.nextToken());//서류심사 성적 순위
                 applicant[j][1] = Integer.parseInt(st.nextToken());//면접성적 순위
             }
-            Arrays.sort(applicant, (a,b) -> {
-                return a[0] - b[0];
-            });
+            Arrays.sort(applicant, Comparator.comparingInt(a->a[0]));
 
             int min = applicant[0][1];
             for(int j = 1; j < N; j++){
