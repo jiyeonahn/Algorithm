@@ -39,7 +39,7 @@ class Main{
             dfs(student[current]);
         }
 
-        visited[current] = false;
+        //visited[current] = false;
         finished[current] = true;
     }
 }
