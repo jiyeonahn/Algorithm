@@ -1,0 +1,18 @@
+# -- 코드를 입력하세요
+SELECT
+    A.FOOD_TYPE,
+    A.REST_ID,
+    A.REST_NAME,
+    A.FAVORITES
+FROM 
+    REST_INFO A
+WHERE
+    FAVORITES = (
+    SELECT
+        MAX(FAVORITES)
+    FROM
+        REST_INFO 
+    WHERE FOOD_TYPE = A.FOOD_TYPE
+    )
+ORDER BY
+    FOOD_TYPE DESC
