@@ -10,5 +10,4 @@ FROM
 GROUP BY
     A.DEPT_ID
 ORDER BY
-    AVG_SAL DESC
-    
+    3 DESC
