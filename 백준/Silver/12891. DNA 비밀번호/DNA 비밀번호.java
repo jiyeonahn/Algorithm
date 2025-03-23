@@ -8,7 +8,7 @@ class Main {
         int S = Integer.parseInt(st.nextToken());
         int P = Integer.parseInt(st.nextToken());
         String str = br.readLine();
-        String[] dna = str.split("");
+        char[] dna = str.toCharArray();
         int[] acgt = new int[4];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < 4; i++) {
@@ -16,36 +16,38 @@ class Main {
         }
 
         int answer = 0;
-        int start = 0;
-        int end = start + P - 1;
-        String[] ch = {"A", "C", "G", "T"};
+
+        char[] ch = {'A', 'C', 'G', 'T'};
         int[] count = new int[4];
 
-        for (int i = start; i < end; i++) {
+        //초기 윈도우 설정
+        for (int i = 0; i < P; i++) {
             for (int j = 0; j < 4; j++) {
-                if (dna[i].equals(ch[j])) {
+                if (dna[i]==ch[j]) {
                     count[j]++;
                 }
             }
         }
-        while (end < S) {
-            //슬라이딩 윈도우: 오른쪽으로 한칸 이동 후 이동 후 개수를 늘려줌
-            for (int i = 0; i < 4; i++) {
-                if (dna[end].equals(ch[i])) {
-                    count[i]++;
-                }
-            }
 
+        int start = 0;
+        int end = P;
+
+        while (true) {
             //최소개수 이상이라면
             if (acgt[0] <= count[0] && acgt[1] <= count[1] && acgt[2] <= count[2] && acgt[3] <= count[3]) {
                 answer++;
             }
-            //슬라이딩 윈도우: 오른쪽으로 한칸 이동 후 이동 전 개수는 다시 줄여줌
+            if(end == S) break;
+            //슬라이딩 윈도우: 오른쪽으로 한칸 이동 후 이동 후 개수를 늘려줌
             for (int i = 0; i < 4; i++) {
-                if (dna[start].equals(ch[i])) {
+                if (dna[end]==ch[i]) { //새로 추가된 문자
+                    count[i]++;
+                }
+                if (dna[start]==ch[i]) { //제거된 문자
                     count[i]--;
                 }
             }
+
             start++;
             end++;
         }
