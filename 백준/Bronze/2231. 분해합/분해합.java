@@ -7,9 +7,11 @@ class Main{
         int m = 0;
         for(int i = 1; i < N; i++){
             int sum = i;
-            String str = String.valueOf(i);
-            for(int j = 0; j < str.length(); j++){
-                sum += str.charAt(j) - '0';
+            int n = i;
+            
+            while(n > 0){
+                sum += n % 10;
+                n = n / 10;
             }
 
             if(sum == N) {
