@@ -1,7 +1,7 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 class Main{
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int[] arr = new int[N];
@@ -9,8 +9,10 @@ class Main{
             arr[i] = Integer.parseInt(br.readLine());
         }
         Arrays.sort(arr);
+        StringBuilder sb = new StringBuilder();
         for(int i = 0; i < N; i++){
-            System.out.println(arr[i]);
+            sb.append(arr[i]).append("\n");
         }
+        System.out.println(sb);
     }
 }
