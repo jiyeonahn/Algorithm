@@ -1,56 +1,59 @@
 import java.util.*;
 import java.io.*;
-class Main{
-    static int w, h;
+
+class Main {
+    static int[][] map;
     static boolean[][] visited;
-    static int[][] landSeaMap;
+    static int w, h, count;
+    static int[] dx = {0, 1, 0, -1, 1, -1, 1, -1};
+    static int[] dy = {1, 0, -1, 0, 1, -1, -1, 1};
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder answer = new StringBuilder();
-        StringTokenizer st;
-
-        while(true){
-            st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        while (true) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
             w = Integer.parseInt(st.nextToken());
             h = Integer.parseInt(st.nextToken());
 
-            if(w == 0 && h == 0) break;
+            if (w == 0 && h == 0) {
+                break;
+            }
 
-            landSeaMap = new int[h][w];
-            visited = new boolean[h][w];
+            map = new int[h][w];
 
-            for(int i = 0; i < h; i++){
+            for (int i = 0; i < h; i++) {
                 st = new StringTokenizer(br.readLine());
-                for(int j = 0; j < w; j++){
-                    landSeaMap[i][j] = Integer.parseInt(st.nextToken());
+                for (int j = 0; j < w; j++) {
+                    map[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
 
-            int count = 0;
-
-            for(int i = 0; i < h; i++){
-                for(int j = 0; j < w; j++){
-                    if(landSeaMap[i][j] == 1 && !visited[i][j]){
+            count = 0;
+            visited = new boolean[h][w];
+            for (int i = 0; i < h; i++) {
+                for (int j = 0; j < w; j++) {
+                    if (!visited[i][j] && map[i][j] == 1) {
                         count++;
-                        dfs(i,j);
+                        visited[i][j] = true;
+                        dfs(i, j);
                     }
                 }
             }
-            answer.append(count).append("\n");
+            sb.append(count).append("\n");
         }
-        System.out.println(answer);
+        System.out.println(sb);
     }
-    public static void dfs(int x, int y){
-        visited[x][y] = true;
-        int[] dx = {1,0,-1,0,1,1,-1,-1};
-        int[] dy = {0,1,0,-1,1,-1,1,-1};
-        for(int i = 0; i < 8; i++){
-            int dx_x = x+dx[i];
-            int dy_y = y+dy[i];
 
-            if(dx_x >= 0 && dx_x < h && dy_y >=0 && dy_y < w){
-                if(landSeaMap[dx_x][dy_y] == 1 && !visited[dx_x][dy_y]){
-                    dfs(dx_x,dy_y);
+    public static void dfs(int x, int y) {
+        for (int i = 0; i < 8; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if (nx >= 0 && nx < h && ny >= 0 && ny < w) {
+                if (!visited[nx][ny] && map[nx][ny] == 1) {
+                    visited[nx][ny] = true;
+                    dfs(nx, ny);
                 }
             }
         }
