@@ -15,6 +15,7 @@ class Main {
         int M = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
+        // 1) 한 칸에 여러 개의 파이어볼이 들어갈 수 있으므로 ArrayList<Node>[][]로 선언해주었다.
         ArrayList<Node>[][] fireball = new ArrayList[N][N];
 
         for (int i = 0; i < N; i++) {
@@ -23,6 +24,7 @@ class Main {
             }
         }
 
+        // 2) 입력받은 파이어볼을 배열 리스트에 질량, 속도, 방향의 정보를 넣는다.
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int r = Integer.parseInt(st.nextToken()) - 1;
@@ -34,6 +36,7 @@ class Main {
             fireball[r][c].add(new Node(m, s, d));
         }
 
+        // 3) 새로운 격자를 만들어 이동 후 파이어볼의 위치를 담는다.
         for (int t = 0; t < K; t++) {
             temp = new ArrayList[N][N];
 
@@ -43,7 +46,7 @@ class Main {
                 }
             }
 
-            //모든 파이어볼이 자신의 방향 di로 속력 si칸 만큼 이동한다
+            // 4) 모든 파이어볼이 자신의 방향 d로 속력 s칸 만큼 이동한다
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
                     for (Node node : fireball[i][j]) {
@@ -52,25 +55,18 @@ class Main {
                 }
             }
 
+            //5) 얕은복사(참조복사)를 하여 fireball은 이제 temp의 내용을 가리킨다
             fireball = temp;
 
-            //이동이 모두 끝난 뒤, 2개 이상의 파이어볼
-            temp = new ArrayList[N][N];
-
+            // 6) 이동이 모두 끝난 뒤, 2개 이상의 파이어볼 나누기
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
-                    temp[i][j] = new ArrayList<>();
-                }
-            }
-
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++) {
-                    if (fireball[i][j].size() >= 2) {
+                    int size = fireball[i][j].size();
+                    if (size >= 2) {
                         int mSum = 0;
                         int sSum = 0;
                         int evenD = 0;
                         int oddD = 0;
-                        int cnt = fireball[i][j].size();
 
                         for (Node node : fireball[i][j]) {
                             mSum += node.m;
@@ -83,29 +79,28 @@ class Main {
                         }
 
                         int[] newD = {};
-                        if (evenD == cnt || oddD == cnt) {
+                        if (evenD == size || oddD == size) {
                             newD = new int[]{0, 2, 4, 6};
                         } else {
                             newD = new int[]{1, 3, 5, 7};
                         }
 
                         int newM = (int) Math.floor(mSum / 5);
-                        int newS = (int) Math.floor(sSum / cnt);
+                        int newS = (int) Math.floor(sSum / size);
 
+                        // 7) 현재 칸 초기화
+                        fireball[i][j] = new ArrayList<>();
+
+                        // 8) 현재 칸에 분할 된 4개의 파이어볼 추가
                         if (newM > 0) {
                             for (int k = 0; k < 4; k++) {
-                                temp[i][j].add(
+                                fireball[i][j].add(
                                         new Node(newM, newS, newD[k]));
                             }
                         }
                     }
-                    if (fireball[i][j].size() == 1) {
-                        temp[i][j].add(
-                                new Node(fireball[i][j].get(0).m, fireball[i][j].get(0).s, fireball[i][j].get(0).d));
-                    }
                 }
             }
-            fireball = temp;
         }
 
         int sum = 0;
