@@ -31,6 +31,7 @@ class Main{
     public static void dfs(int x, int y, int dir, int sum){
         if(x == N-1){
             min = Math.min(min, sum);
+            return;
         }
 
         for(int i = 0; i < 3; i++){
