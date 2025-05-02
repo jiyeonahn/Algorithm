@@ -6,24 +6,20 @@ class Main {
         String str1 = br.readLine();
         String str2 = br.readLine();
 
-        HashMap<Character, Integer> map = new HashMap<>();
+        int[] alpha1 = new int[26];
+        int[] alpha2 = new int[26];
+
         for(int i = 0; i < str1.length(); i++){
-            char ch = str1.charAt(i);
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            alpha1[str1.charAt(i)-'a']++;
+        }
+
+        for(int i = 0; i < str2.length(); i++){
+            alpha2[str2.charAt(i)-'a']++;
         }
 
         int count = 0;
-        for(int i = 0; i < str2.length(); i++){
-            char ch = str2.charAt(i);
-            if(map.getOrDefault(ch,0) == 0){
-                count++;
-            }else{
-                map.put(ch, map.get(ch)-1);
-            }
-        }
-
-        for(char key : map.keySet()){
-            count += map.get(key);
+        for(int i = 0; i < 26; i++){
+            count += Math.abs(alpha1[i] - alpha2[i]);
         }
 
         System.out.println(count);
