@@ -33,7 +33,6 @@ class Main {
             }
             if(arr[left] + arr[right] < x){
                 left++;
-                right = n - 1;
             }
         }
 
