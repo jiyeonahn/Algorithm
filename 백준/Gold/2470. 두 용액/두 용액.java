@@ -1,34 +1,38 @@
 import java.util.*;
 import java.io.*;
 class Main{
+    static int min = Integer.MAX_VALUE;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        StringTokenizer st = new StringTokenizer(br.readLine());
+
         int[] arr = new int[N];
+        int[] answer = new int[2];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i = 0; i < N; i++){
             arr[i] = Integer.parseInt(st.nextToken());
         }
+
         Arrays.sort(arr);
-        int[] answer = new int[2];
 
         int left = 0;
         int right = N-1;
-        int min = Math.abs(arr[left] + arr[right]);
-        answer[0] = arr[left];
-        answer[1] = arr[right];
 
         while(left < right){
-            int sum = arr[left] + arr[right];
-            if(Math.abs(sum) < min){
-                min = Math.abs(sum);
+            int diff = Math.abs(arr[right] + arr[left]);
+
+            if(diff < min){
+                min = diff;
                 answer[0] = arr[left];
                 answer[1] = arr[right];
-                if(min == 0) break;
             }
-            if(sum < 0){
+
+            if(diff == 0) break;
+
+            if(arr[right] + arr[left] < 0){
                 left++;
-            }else{
+            }else if(arr[right] + arr[left] > 0){
                 right--;
             }
         }
