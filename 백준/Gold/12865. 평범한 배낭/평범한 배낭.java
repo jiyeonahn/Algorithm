@@ -1,29 +1,31 @@
+import com.sun.security.jgss.GSSUtil;
 import java.util.*;
 import java.io.*;
 class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken()); //물품 수
-        int K = Integer.parseInt(st.nextToken()); //최대 무게
+
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
 
         int[][] dp = new int[N+1][K+1];
+        //dp: i번째 배낭까지 넣을 수 있으면서 배낭 무게 j이하일 때의 최대 가치
 
         for(int i = 1; i <= N; i++){
             st = new StringTokenizer(br.readLine());
-            //현재 물건
-            int W = Integer.parseInt(st.nextToken());//무게
-            int V = Integer.parseInt(st.nextToken());//가치
+            int W = Integer.parseInt(st.nextToken());
+            int V = Integer.parseInt(st.nextToken());
 
-            for(int j = 0 ; j <= K; j++){//j무게의 배낭
-                if(j < W){//배낭에 넣을 수 있는 최대 무게 보다 물건의 무게가 클 때 => 배낭에 물건을 넣을 수 없음
+            for(int j = 0; j <= K; j++){
+                if(W > j){
                     dp[i][j] = dp[i-1][j];
-                }else{//배낭에 넣을 수 있는 최대 무게 보다 물건의 무게가 작거나 같을 때 => 배낭에 물건을 넣을 수 있음
-                    dp[i][j] = Math.max(dp[i-1][j], V + dp[i-1][j-W]);
+                }else{
+                    dp[i][j] = Math.max(dp[i-1][j], V+dp[i-1][j-W]);
                 }
             }
-
         }
+
         System.out.println(dp[N][K]);
     }
 }
