@@ -1,42 +1,45 @@
 import java.util.*;
 import java.io.*;
 class Main{
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        int[] house = new int[N];
+        int C = Integer.parseInt(st.nextToken());
+
+        int[] arr = new int[N];
 
         for(int i = 0; i < N; i++){
-            house[i] = Integer.parseInt(br.readLine());
+            arr[i] = Integer.parseInt(br.readLine());
         }
 
-        Arrays.sort(house);
+        Arrays.sort(arr);
+
+        int low = 1;
+        int high = arr[N-1] - arr[0];
 
         int answer = 0;
-        int low = 1;
-        int high = house[N-1] - house[0]; // 최대거리
-        while(low<=high){
-            int mid = (low+high)/2;
 
-
-            int lastPosition = house[0];
+        while(low <= high){
             int count = 1;
+            int mid = (low+high)/2;
+            int location = arr[0];
             for(int i = 1; i < N; i++){
-                if(house[i]-lastPosition >= mid){
+                if(arr[i]-location >= mid){
                     count++;
-                    lastPosition = house[i];
+                    location = arr[i];
                 }
             }
 
-            if(count < M){//설치 할 수 있는 공유기가 적다면 => 거리 줄여야함
-                high = mid - 1;
-            }else{//설치 할 수 있는 공유기가 적다면 => 거리 늘려야 함
+            if(C <= count){
                 low = mid + 1;
                 answer = mid;
+            }else{
+                high = mid -1;
             }
         }
+
         System.out.println(answer);
     }
 }
