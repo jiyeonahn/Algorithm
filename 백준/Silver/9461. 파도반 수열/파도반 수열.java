@@ -8,11 +8,8 @@ class Main{
         long[] P = new long[101];
         P[1] = 1;
         P[2] = 1;
-        P[3] = 1;
-        P[4] = 2;
-        P[5] = 2;
-        for(int i = 6; i <= 100; i++){
-            P[i] = P[i-5] + P[i-1];
+        for(int i = 3; i <= 100; i++){
+            P[i] = P[i-3] + P[i-2];
         }
         
         StringBuilder sb = new StringBuilder();
