@@ -12,23 +12,18 @@ class Main{
 
         int[] dp = new int[n];
 
-        if(n == 1){
-            System.out.println(arr[0]);
-            return;
-        }
-
-        dp[n-1] = arr[n-1];
+        dp[0] = arr[0];
 
         if(n >= 2){
-            dp[n-2] = arr[n-2] + arr[n-1];
+            dp[1] = arr[1] + arr[0];
         }
         if(n >= 3){
-            dp[n-3] = arr[n-3] + arr[n-1];
+            dp[2] = arr[2] + Math.max(arr[0], arr[1]);
         }
-        for(int i = n-4; i >= 0; i--){
-            dp[i] = arr[i] + Math.max(dp[i+2], arr[i+1] + dp[i+3]);
+        for(int i = 3; i < n; i++){
+            dp[i] = arr[i] + Math.max(dp[i-2], arr[i-1] + dp[i-3]);
         }
 
-        System.out.println(Math.max(dp[0], dp[1]));
+        System.out.println(dp[n-1]);
     }
 }
