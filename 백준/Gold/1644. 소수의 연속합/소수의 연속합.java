@@ -6,14 +6,26 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
+        boolean[] prime = new boolean[N+1];
+        Arrays.fill(prime, true);
+        prime[0] = false;
+        prime[1] = false;
+        for(int i = 2; i*i <= N; i++){
+            if(prime[i]){
+                for(int j = i*i; j <= N; j+=i){//불필요한 반복을 막음
+                    prime[j] = false;
+                }
+            }
+        }
+
         if(N == 1){
             System.out.println(0);
             return;
         }
 
         Queue<Integer> queue = new LinkedList<>();
-        for (int i = 2; i <= N; i++) {
-            if (isPrime(i)) {
+        for (int i = 1; i <= N; i++) {
+            if (prime[i]) {
                 queue.add(i);
             }
         }
@@ -46,14 +58,5 @@ class Main {
         }
 
         System.out.println(count);
-    }
-
-    public static boolean isPrime(int n) {
-        for (int i = 2; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }
