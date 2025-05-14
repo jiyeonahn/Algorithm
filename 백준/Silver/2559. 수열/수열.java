@@ -8,24 +8,25 @@ class Main{
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
+        int[] arr = new int[N+1];
+
         st = new StringTokenizer(br.readLine());
-        int[] arr = new int[N];
-        for(int i = 0; i < N; i++){
+        for(int i = 1; i <= N; i++){
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int left = 0;
-        int right = K;
-        int sum = 0;
-        int max = Integer.MIN_VALUE;
-        while(right<= N){
-            sum = 0;
-            for(int i = left; i < right; i++){
-                sum += arr[i];
-            }
-            max = Math.max(max, sum);
-            left++;
-            right = left+K;
+        int[] sum = new int[N+1];
+
+        for(int i = 1; i <= N; i++){
+            sum[i] = arr[i] + sum[i-1];
+        }
+
+        int max = -10000000;
+        for(int i = 1; i <= N-K+1; i++){
+            int start = i;
+            int end = i+K-1;
+
+            max = Math.max(max, sum[end] - sum[start-1]);
         }
 
         System.out.println(max);
