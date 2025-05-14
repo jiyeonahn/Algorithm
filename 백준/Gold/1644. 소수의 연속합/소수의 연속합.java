@@ -6,6 +6,8 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
+        ArrayList<Integer> primeList = new ArrayList<>();
+
         boolean[] prime = new boolean[N+1];
         Arrays.fill(prime, true);
         prime[0] = false;
@@ -18,27 +20,15 @@ class Main {
             }
         }
 
-        if(N == 1){
-            System.out.println(0);
-            return;
-        }
-
-        Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i <= N; i++) {
             if (prime[i]) {
-                queue.add(i);
+                primeList.add(i);
             }
-        }
-
-        int[] arr = new int[queue.size()];
-        int idx = 0;
-        while (!queue.isEmpty()) {
-            arr[idx++] = queue.poll();
         }
 
         int left = 0;
         int right = 0;
-        int sum = arr[0];
+        int sum = primeList.isEmpty() ? 0 : primeList.get(0);
         int count = 0;
         while (left <= right) {
             if (sum <= N) {
@@ -46,13 +36,13 @@ class Main {
                     count++;
                 }
                 right++;
-                if (right >= arr.length) {
+                if (right >= primeList.size()) {
                     break;
                 }
-                sum += arr[right];
+                sum += primeList.get(right);
 
             } else {
-                sum -= arr[left];
+                sum -= primeList.get(left);
                 left++;
             }
         }
