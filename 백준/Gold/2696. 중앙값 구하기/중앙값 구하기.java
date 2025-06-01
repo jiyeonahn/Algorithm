@@ -6,44 +6,35 @@ class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
-        StringTokenizer st;
+
         StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < T; i++) {
+        StringTokenizer st;
+        while (T-- > 0) {
             int M = Integer.parseInt(br.readLine());
-            sb.append(M/2+1).append("\n");
+            sb.append(M / 2 + 1).append("\n");
             ArrayList<Integer> list = new ArrayList<>();
-            int cnt = M / 10;
-            int num = 0;
-            while (cnt > 0) {
-                cnt--;
-                num++;
-                st = new StringTokenizer(br.readLine());
-                for (int j = 1; j <= 10; j++) {
-                    int n = Integer.parseInt(st.nextToken());
-                    list.add(n);
-                    if (j % 2 == 1) {
-                        Collections.sort(list);
-                        sb.append(list.get(list.size() / 2)).append(" ");
-                    }
-                }
-                if (num%2 == 0) {
-                    sb.append("\n");
-                }
-            }
+            st = null;
 
-            st = new StringTokenizer(br.readLine());
-            for (int j = 1; j <= M % 10; j++) {
+            int cnt = 0;
+            for (int i = 0; i < M; i++) {
+                if (i % 10 == 0) {
+                    st = new StringTokenizer(br.readLine());
+                }
                 int n = Integer.parseInt(st.nextToken());
                 list.add(n);
-                if (j % 2 == 1) {
+                if (i % 2 == 0) {
+                    cnt++;
                     Collections.sort(list);
                     sb.append(list.get(list.size() / 2)).append(" ");
+                    if (cnt % 10 == 0) {
+                        sb.append("\n");
+                    }
                 }
             }
 
             sb.append("\n");
         }
+
         System.out.println(sb);
     }
 }
