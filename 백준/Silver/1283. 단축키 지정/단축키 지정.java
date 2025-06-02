@@ -6,45 +6,38 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
-        HashSet<String> set = new HashSet<>();
+        HashSet<Character> set = new HashSet<>();
 
-        String[] answer = new String[N];
 
         for (int i = 0; i < N; i++) {
-            String[] str = br.readLine().split(" ");
-            answer[i] = "";
-            boolean isKey = false;
-            for (String s : str) {
-                if (!set.contains((s.charAt(0) + "").toUpperCase()) && !isKey) {
-                    set.add((s.charAt(0) + "").toUpperCase());
-                    answer[i] += "[" + s.charAt(0) + "]" + s.substring(1) + " ";
-                    isKey = true;
+            StringBuilder sb = new StringBuilder();
+            String w = br.readLine();
+            String[] words = w.split(" ");
+            boolean hasKey = false;
+            for (String word : words) {
+                if (!set.contains(Character.toUpperCase(word.charAt(0))) && !hasKey) {
+                    set.add(Character.toUpperCase(word.charAt(0)));
+                    sb.append("[").append(word.charAt(0)).append("]").append(word.substring(1)).append(" ");
+                    hasKey = true;
                     continue;
                 }
-                answer[i] += s + " ";
+                sb.append(word).append(" ");
             }
-            if (!isKey) {//모든 단어의 첫 글자가 이미 지정이 되어있다면
-                int len = answer[i].length();
-                String str2 = answer[i];
-                answer[i] = "";
-                boolean find = false;
-                for (int j = 0; j < len; j++) {
-                    if(str2.charAt(j) == ' ') {
-                        answer[i] += str2.charAt(j);
-                        continue;
-                    }
-                    if (!set.contains((str2.charAt(j) + "").toUpperCase()) && !find) {
-                        find = true;
-                        set.add((str2.charAt(j) + "").toUpperCase());
-                        answer[i] += "[" + str2.charAt(j) + "]";
+            if (!hasKey) {//모든 단어의 첫 글자가 이미 지정이 되어있다면
+                sb.setLength(0);
+                boolean findKey = false;
+                for (int j = 0; j < w.length(); j++) {
+                    if (w.charAt(j) != ' ' && !set.contains(Character.toUpperCase(w.charAt(j))) && !findKey) {
+                        findKey = true;
+                        set.add(Character.toUpperCase(w.charAt(j)));
+                        sb.append("[").append(w.charAt(j)).append("]");
                     } else {
-                        answer[i] += str2.charAt(j);
+                        sb.append(w.charAt(j));
                     }
                 }
             }
+            System.out.println(sb);
         }
-        for (String ss : answer) {
-            System.out.println(ss);
-        }
+
     }
 }
