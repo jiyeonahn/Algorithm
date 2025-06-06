@@ -3,20 +3,15 @@ class Solution {
         StringBuilder answer = new StringBuilder();
         for(int i = 0; i < s.length(); i++){
             char nextChar = s.charAt(i);
-            
-            for(int j = 0; j < index; j++){
-                nextChar = (char)(nextChar+1);
-                if(nextChar > 122){
-                    nextChar = (char)(96+nextChar-122);
+            int count = 0;
+            while(count < index){
+                nextChar++;
+                if(nextChar > 'z'){
+                    nextChar = 'a';
                 }
-                while(true){
-                    if(!skip.contains(nextChar+"")){
-                        break;
-                    }
-                    nextChar = (char)(nextChar+1);
-                    if(nextChar > 122){
-                        nextChar = (char)(96+nextChar-122);
-                    }
+                
+                if(!skip.contains(String.valueOf(nextChar))) {
+                    count++;
                 }
             }
             
