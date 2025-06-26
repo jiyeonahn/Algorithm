@@ -1,48 +1,45 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
-public class Main {//숨바꼭질
-
+class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
-        int[] lc = new int[3];
-        int[] ans = new int[100001];
 
-        Queue<Integer> q = new LinkedList<>();
-        q.add(N);
+        Queue<int[]> queue = new LinkedList<>();
 
-        while (!q.isEmpty()) {
-            int n = q.poll();
+        queue.add(new int[]{N, 0});
 
-            if(n == K) {
-                System.out.println(0);
+        boolean[] visited = new boolean[100001];
+
+        int answer = 0;
+        while (!queue.isEmpty()) {
+            int[] now = queue.poll();
+
+            if (now[0] == K) {
+                answer = now[1];
                 break;
             }
 
-            lc[0] = n + 1;
-            lc[1] = n - 1;
-            lc[2] = n * 2;
+            if (now[0] + 1 <= 100000 && !visited[now[0] + 1]) {
+                visited[now[0]+1] = true;
+                queue.add(new int[]{now[0] + 1, now[1] + 1});
+            }
 
-            for (int i = 0; i < 3; i++) {
-                if (lc[i] >= 0 && lc[i] <= 100000 && ans[lc[i]] == 0) {
-                    ans[lc[i]] = ans[n] + 1;
-                    if (lc[i] == K) {
-                        System.out.println(ans[lc[i]]);
-                        q.clear();
-                        break;
-                    }
-                    q.add(lc[i]);
-                }
+            if (now[0] - 1 >= 0 && !visited[now[0] - 1]) {
+                visited[now[0]-1] = true;
+                queue.add(new int[]{now[0] - 1, now[1] + 1});
+            }
+
+            if (now[0] * 2 <= 100000 && !visited[now[0] * 2]) {
+                visited[now[0]*2] = true;
+                queue.add(new int[]{now[0] * 2, now[1] + 1});
             }
         }
-    }
 
+        System.out.println(answer);
+    }
 }
