@@ -27,7 +27,6 @@ class Solution {
     public int binarySearch(ArrayList<Integer> arr, int target){
         int low = 0;
         int high = arr.size()-1;
-        int result = 0;
         
         while(low <= high){
             int mid = (low+high)/2;
@@ -36,7 +35,6 @@ class Solution {
                 low = mid + 1;
             }else{
                 high = mid - 1;
-                result = mid;
             }
         }
         
