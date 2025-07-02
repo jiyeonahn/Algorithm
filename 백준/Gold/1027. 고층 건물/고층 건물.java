@@ -21,7 +21,7 @@ class Main {
             double right = Integer.MIN_VALUE;
 
             for (int j = i - 1; j >= 0; j--) {
-                double slope = (double) (buildings[i] - buildings[j]) / (i - j);
+                double slope = (double) (buildings[j] - buildings[i]) / (j - i);
                 if (slope < left) {
                     left = slope;
                     answer++;
@@ -29,7 +29,7 @@ class Main {
             }
 
             for (int j = i + 1; j < N; j++) {
-                double slope = (double) (buildings[i] - buildings[j]) / (i - j); //0.xx가 0이 되는듯!!!
+                double slope = (double) (buildings[i] - buildings[j]) / (i - j);
 
                 if (slope > right) {
                     right = slope;
