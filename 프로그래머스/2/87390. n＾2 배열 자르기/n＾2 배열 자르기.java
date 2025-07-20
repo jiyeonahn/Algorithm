@@ -1,0 +1,17 @@
+class Solution {
+    public int[] solution(int n, long left, long right) {
+        int size = (int)(right-left+1);
+        int[] answer = new int[size];
+        
+        for(int i = 0; i < size; i++){
+            long index = left + i;
+            
+            int row = (int)(index/n); //행 번호
+            int col = (int)(index%n); //열 번호
+            
+            answer[i] = Math.max(row,col)+1;
+        }
+        
+        return answer;
+    }
+}
