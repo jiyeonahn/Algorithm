@@ -34,7 +34,7 @@ class Main{
     }
     public static void dijkstra(){
         dist[0][0] = map[0][0];
-        PriorityQueue<Node> pq = new PriorityQueue<>((a,b) -> a.cost - b.cost);
+        PriorityQueue<Node> pq = new PriorityQueue<>((a,b) -> Integer.compare(a.cost,b.cost));
         pq.add(new Node(0,0,map[0][0]));
 
         while(!pq.isEmpty()){
