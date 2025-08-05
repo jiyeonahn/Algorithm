@@ -11,7 +11,10 @@ class Main{
         for(int i = 0; i < N; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
             for(int j = 0; j < N; j++){
-                dist[i][j] = Integer.parseInt(st.nextToken());
+                int d = Integer.parseInt(st.nextToken());
+                if(d == 1){
+                    dist[i][j] = 1;
+                }
             }
         }
 
